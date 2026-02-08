@@ -1,2 +1,3 @@
-# local-entrepreneurs-marketplace-with-6-business-categories
-Exported from Caffeine project: Local Entrepreneurs Marketplace with 6 Business Categories
+## Local Entrepreneurs Marketplace with 6 Business Categories
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`

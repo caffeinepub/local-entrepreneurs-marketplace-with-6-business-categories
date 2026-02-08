@@ -1,0 +1,84 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Build a marketplace app to help local entrepreneurs get recognized and sell their products, organized into ~6 business categories.",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Marketplace app logo, simple modern mark with warm earth-tone palette (logo.dim_512x512.png)\n- Hero illustration showing a friendly local market scene with small business stalls/products in a clean vector style (hero-illustration.dim_1600x900.png)",
+  "existing_features": [
+    {
+      "id": "feature-implement-authentication-with-internet-identity-for-entrepreneurs-so-they-can-manage-their-seller-profile-and-product-listings-allow-unauthenticated-users-to-browse-categories-sellers-and-products",
+      "title": "Implement authentication with Internet Identity for entrepreneurs so they can manage their seller profile and product listings; allow unauthenticated users to browse categories, sellers, and products.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-the-customer-facing-browsing-experience-a-home-page-that-highlights-the-marketplace-purpose-a-category-navigation-for-approximately-6-categories-product-browsing-with-category-filtering-product-detail-view-and-seller-profile-view-showing-seller-info-and-their-products",
+      "title": "Build the customer-facing browsing experience: a home page that highlights the marketplace purpose, a category navigation for approximately 6 categories, product browsing with category filtering, product detail view, and seller profile view showing seller info and their products.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-an-entrepreneur-dashboard-for-creating-and-managing-their-presence-on-the-app-create-edit-seller-profile-e-g-business-name-description-category-contact-info-and-create-edit-delete-product-listings-e-g-title-description-category-price-optional-image-url",
+      "title": "Build an entrepreneur dashboard for creating and managing their presence on the app: create/edit seller profile (e.g., business name, description, category, contact info) and create/edit/delete product listings (e.g., title, description, category, price, optional image URL).",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-simple-interest-order-request-flow-that-lets-a-customer-submit-a-purchase-interest-message-for-a-product-stored-as-an-inquiry-linked-to-product-seller-so-the-app-supports-sell-their-product-without-requiring-external-payment-integrations",
+      "title": "Add a simple “interest/order request” flow that lets a customer submit a purchase interest message for a product (stored as an inquiry linked to product + seller), so the app supports “sell their product” without requiring external payment integrations.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-cohesive-visual-theme-and-layout-for-an-initial-v1-marketplace-with-a-distinct-style-not-blue-purple-define-color-palette-typography-spacing-and-component-usage-and-apply-consistently-across-pages-home-category-browse-product-detail-seller-profile-dashboard",
+      "title": "Apply a cohesive visual theme and layout for an initial v1 marketplace, with a distinct style (not blue/purple): define color palette, typography, spacing, and component usage and apply consistently across pages (home, category browse, product detail, seller profile, dashboard).",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-generate-and-include-static-brand-assets-for-the-app-logo-hero-illustration-and-render-them-in-the-ui-from-frontend-public-assets-generated-do-not-serve-via-backend",
+      "title": "Generate and include static brand assets for the app (logo + hero illustration) and render them in the UI from frontend/public/assets/generated (do not serve via backend).",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create a marketplace app for local entrepreneurs to list and sell products within the app",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Support browsing/filtering by approximately 6 business categories (category-based organization of sellers/products)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Create the core marketplace data model and APIs to support local entrepreneurs listing products and being discovered by customers, including: (a) business categories (approximately 6 categories), (b) entrepreneur/seller profiles, (c) product listings tied to sellers and categories, and (d) public browsing/search endpoints.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "status": "pending"
+    }
+  ],
+  "projectName": "Local Entrepreneurs Marketplace with 6 Business Categories",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

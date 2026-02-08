@@ -1,0 +1,249 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Local Entrepreneurs Marketplace (Frontend) — Browse, Dashboard, Inquiries, Theme, Brand Assets",
+  "requirements": [
+    {
+      "id": "REQ-2",
+      "summary": "Add Internet Identity sign-in/out UI and authenticated entrepreneur access to dashboard actions while keeping public browsing available to guests.",
+      "acceptanceCriteria": [
+        "Entrepreneur actions (create/update seller profile, create/update/delete products) require a signed-in identity.",
+        "Browsing (view categories, browse products, view seller profile) works without signing in.",
+        "UI clearly indicates signed-in state and provides sign in/sign out controls."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Create the main app shell with routing, top navigation, and auth-aware links (e.g., Dashboard visible/accessible only when signed in), while keeping public routes accessible to guests. Use the authorization component’s frontend guidance for sign-in state handling; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/auth/LoginButton.tsx",
+          "operation": "create",
+          "description": "Add a reusable Internet Identity login/logout button using useInternetIdentity and clear React Query cache on logout. Use the authorization component’s Login Component guidance; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/auth/ProfileSetupDialog.tsx",
+          "operation": "create",
+          "description": "Prompt first-time logged-in users to create their UserProfile (name + email) using getCallerUserProfile/saveCallerUserProfile, avoiding modal flash by following the authorization component’s guidance; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useCurrentUser.ts",
+          "operation": "create",
+          "description": "Create a small hook that derives isAuthenticated, principal (string), and loads current UserProfile via backend calls (react-query), aligning with authorization component patterns; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useActor.ts",
+          "operation": "modify",
+          "description": "Ensure actor recreation and query invalidation on identity change remains compatible with guest browsing and authenticated mutations (no change to backend behavior; just align frontend assumptions and error handling for auth-required calls)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Build customer-facing browsing: home with purpose + categories, category-filtered products, product detail, and seller profile with seller’s products.",
+      "acceptanceCriteria": [
+        "Users can browse a list/grid of categories and select one to filter products.",
+        "Users can view a product details page with key information (name, price if provided, description, seller).",
+        "Users can navigate to a seller profile page and see that seller’s product list.",
+        "All user-facing UI text is in English."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "create",
+          "description": "Create the home page that explains the marketplace purpose, renders the brand logo + hero illustration, and shows a categories grid for ~6 categories (data-driven from backend). Verify the component's usage instructions before implementing (shadcn-ui components)."
+        },
+        {
+          "path": "frontend/src/pages/CategoryBrowsePage.tsx",
+          "operation": "create",
+          "description": "Create a category browsing page that shows the selected category details and a responsive product list filtered by category. Verify the component's usage instructions before implementing (shadcn-ui components)."
+        },
+        {
+          "path": "frontend/src/pages/ProductDetailPage.tsx",
+          "operation": "create",
+          "description": "Create a product detail page that shows product info and seller link; also hosts the inquiry form entry point (wired in REQ-5). Verify the component's usage instructions before implementing (shadcn-ui components)."
+        },
+        {
+          "path": "frontend/src/pages/SellerProfilePage.tsx",
+          "operation": "create",
+          "description": "Create a seller profile page showing seller details and that seller’s product list. Verify the component's usage instructions before implementing (shadcn-ui components)."
+        },
+        {
+          "path": "frontend/src/hooks/marketplace.ts",
+          "operation": "create",
+          "description": "Add react-query hooks for reading marketplace data (categories, products by category, product by id, seller profile by id, seller products by entrepreneur/profile). Keep all user-facing strings in English. Verify the component's usage instructions before implementing (authorization patterns for actor-dependent queries + shadcn-ui for UI composition)."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the new public routes (Home, Category browse, Product detail, Seller profile) into the router and ensure navigation paths exist (no orphan pages). Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Create an entrepreneur dashboard for managing seller profile and product listings (create/edit/delete) reflecting backend state.",
+      "acceptanceCriteria": [
+        "Signed-in entrepreneurs can create or edit a seller profile.",
+        "Signed-in entrepreneurs can add a new product, edit an existing product, and delete a product they own.",
+        "Dashboard reflects backend state (shows the entrepreneur’s current products and profile fields)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/DashboardPage.tsx",
+          "operation": "create",
+          "description": "Create an authenticated entrepreneur dashboard page with sections for seller profile and product management, and show helpful prompts when profile is missing. Verify the component's usage instructions before implementing (authorization patterns + shadcn-ui components)."
+        },
+        {
+          "path": "frontend/src/components/dashboard/SellerProfileForm.tsx",
+          "operation": "create",
+          "description": "Create a form to create/edit seller profile fields (business name, description, category, contact) backed by createOrUpdateProfile and category list for selection. Verify the component's usage instructions before implementing (shadcn-ui form primitives)."
+        },
+        {
+          "path": "frontend/src/components/dashboard/ProductEditor.tsx",
+          "operation": "create",
+          "description": "Create add/edit product form (title/name, description, category, price, optional image URL if supported by backend fields) backed by createOrUpdateProduct. Verify the component's usage instructions before implementing (shadcn-ui components)."
+        },
+        {
+          "path": "frontend/src/components/dashboard/ProductListManager.tsx",
+          "operation": "create",
+          "description": "Create a dashboard list/table for the entrepreneur’s products with edit actions and a delete action (only for owned products). Verify the component's usage instructions before implementing (shadcn-ui components)."
+        },
+        {
+          "path": "frontend/src/hooks/marketplace.ts",
+          "operation": "modify",
+          "description": "Add authenticated mutations (createOrUpdateProfile, createOrUpdateProduct, and any available delete capability if present) and query invalidation to keep dashboard state consistent after changes. Verify the component's usage instructions before implementing (authorization actor-dependent patterns)."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the Dashboard route and add an auth guard that redirects guests to a friendly sign-in prompt (without blocking public browsing). Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Implement product inquiry flow: customers submit interest messages; entrepreneurs view and resolve inquiries in dashboard UI.",
+      "acceptanceCriteria": [
+        "From a product detail page, a user can submit an inquiry (name/contact + message).",
+        "Backend stores inquiries per product/seller and sellers can list inquiries for their products in the dashboard.",
+        "Sellers can mark an inquiry as handled/resolved."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/inquiries/ProductInquiryForm.tsx",
+          "operation": "create",
+          "description": "Add a customer inquiry form (name, contact, message) for the product detail page, calling createProductInquiry and showing success/error feedback. Verify the component's usage instructions before implementing (shadcn-ui components)."
+        },
+        {
+          "path": "frontend/src/pages/ProductDetailPage.tsx",
+          "operation": "modify",
+          "description": "Embed the ProductInquiryForm on the product detail page and pass required identifiers (product + entrepreneur/seller) from loaded product data. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/dashboard/InquiriesPanel.tsx",
+          "operation": "create",
+          "description": "Add a dashboard panel listing inquiries for the entrepreneur using getInquiriesByEntrepreneur and providing a UI affordance to mark handled/resolved (wired to the backend capability provided for resolution). Verify the component's usage instructions before implementing (shadcn-ui components)."
+        },
+        {
+          "path": "frontend/src/pages/DashboardPage.tsx",
+          "operation": "modify",
+          "description": "Wire the InquiriesPanel into the dashboard layout (e.g., tab/section) so sellers can review inquiries alongside profile/products. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/marketplace.ts",
+          "operation": "modify",
+          "description": "Add react-query hooks for creating inquiries and fetching entrepreneur inquiries, including cache invalidation after submit/resolve actions. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Apply a cohesive warm/earth-tone responsive theme and consistent layout across all main screens.",
+      "acceptanceCriteria": [
+        "UI uses a consistent theme (colors/typography) across all main screens.",
+        "Theme avoids a blue/purple primary look; choose an alternative suitable for a local marketplace (e.g., warm neutrals/earth tones).",
+        "Pages are responsive and usable on mobile and desktop."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "create",
+          "description": "Create global styles using Tailwind + CSS variables to define a warm/earth-tone palette (non-blue/purple primary), typography, spacing, and consistent surfaces for cards/sections across the app. Verify the component's usage instructions before implementing (shadcn-ui theming expectations)."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Adjust theme tokens (via CSS variable usage and any needed extensions) to support the chosen warm palette and consistent radii/shadows without introducing a blue/purple primary look."
+        },
+        {
+          "path": "frontend/src/components/layout/AppLayout.tsx",
+          "operation": "create",
+          "description": "Create a reusable responsive layout (header/nav container, main content width, footer) used by all pages for consistency. Verify the component's usage instructions before implementing (shadcn-ui components)."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wrap all routes with AppLayout and ensure consistent responsive spacing/typography across pages. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Align home page sections (hero, categories, purpose text) to the global theme and responsive layout. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/CategoryBrowsePage.tsx",
+          "operation": "modify",
+          "description": "Apply consistent grid/list styling, filters layout, and responsive behavior matching the global theme. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/ProductDetailPage.tsx",
+          "operation": "modify",
+          "description": "Apply consistent detail layout and responsive spacing; ensure readable hierarchy and clear calls-to-action. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/SellerProfilePage.tsx",
+          "operation": "modify",
+          "description": "Apply consistent profile header + products section styling aligned to the theme. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/DashboardPage.tsx",
+          "operation": "modify",
+          "description": "Apply consistent dashboard sections/tabs/cards styling aligned to the theme and responsive layout. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Add generated brand assets (logo + hero illustration) as static frontend assets and render them on the home page.",
+      "acceptanceCriteria": [
+        "Generated images are stored under frontend/public/assets/generated and referenced directly by the frontend.",
+        "Home page includes the hero illustration and app logo in a way that fits the chosen theme.",
+        "Assets load correctly in production build (no broken image links)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated marketplace logo asset as a static file at this exact path for direct frontend use."
+        },
+        {
+          "path": "frontend/public/assets/generated/hero-illustration.dim_1600x900.png",
+          "operation": "create",
+          "description": "Add the generated hero illustration asset as a static file at this exact path for direct frontend use."
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Reference and render the static assets from frontend/public/assets/generated/logo.dim_512x512.png and frontend/public/assets/generated/hero-illustration.dim_1600x900.png within the themed hero section (no backend serving). Verify the component's usage instructions before implementing (shadcn-ui components)."
+        },
+        {
+          "path": "frontend/src/components/layout/AppLayout.tsx",
+          "operation": "modify",
+          "description": "Include the logo in the global header (and/or footer) by referencing frontend/public/assets/generated/logo.dim_512x512.png for consistent branding across pages. Verify the component's usage instructions before implementing."
+        }
+      ]
+    }
+  ]
+}

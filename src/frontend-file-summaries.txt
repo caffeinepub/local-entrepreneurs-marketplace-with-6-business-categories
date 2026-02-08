@@ -1,0 +1,20 @@
+{
+  "frontend/src/App.tsx": "Main application component with TanStack Router setup, defining all routes (home, category, product, seller, dashboard) and wrapping with ThemeProvider and AppLayout.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for all backend operations including categories, user profiles, entrepreneur profiles, products, and inquiries with proper cache invalidation.",
+  "frontend/src/hooks/useCurrentUser.ts": "Custom hook that combines Internet Identity authentication state with user profile data for easy access throughout the app.",
+  "frontend/src/components/auth/LoginButton.tsx": "Reusable authentication button component that handles Internet Identity login/logout with proper query cache clearing.",
+  "frontend/src/components/auth/ProfileSetupDialog.tsx": "Modal dialog that prompts first-time users to create their UserProfile with name and email after signing in.",
+  "frontend/src/components/layout/AppLayout.tsx": "Global layout component with header navigation, logo, authentication controls, and footer with branding attribution.",
+  "frontend/src/pages/HomePage.tsx": "Landing page featuring hero section with illustration, marketplace purpose explanation, and browsable category grid.",
+  "frontend/src/pages/CategoryBrowsePage.tsx": "Category-specific product browsing page displaying filtered products in a responsive grid with category details.",
+  "frontend/src/pages/ProductDetailPage.tsx": "Detailed product view with pricing, description, seller information, and embedded inquiry form for customer contact.",
+  "frontend/src/pages/SellerProfilePage.tsx": "Seller profile page showing business information, contact details, and all products listed by that entrepreneur.",
+  "frontend/src/pages/DashboardPage.tsx": "Authenticated entrepreneur dashboard with tabs for managing business profile, products, and viewing customer inquiries.",
+  "frontend/src/components/dashboard/SellerProfileForm.tsx": "Form component for creating and updating entrepreneur business profiles with category selection and validation.",
+  "frontend/src/components/dashboard/ProductEditor.tsx": "Modal dialog form for adding new products or editing existing ones with price, category, and description fields.",
+  "frontend/src/components/dashboard/ProductListManager.tsx": "Dashboard component displaying entrepreneur's product list with edit actions and empty state handling.",
+  "frontend/src/components/dashboard/InquiriesPanel.tsx": "Dashboard panel showing all customer inquiries received for the entrepreneur's products.",
+  "frontend/src/components/inquiries/ProductInquiryForm.tsx": "Customer-facing form for submitting product inquiries with name, contact, and message fields (fixed import typo from useQuiries to useQueries).",
+  "frontend/src/index.css": "Global styles with warm earth-tone OKLCH color system (terracotta primary, sand secondary) for both light and dark modes.",
+  "frontend/tailwind.config.js": "Tailwind configuration extending theme with warm marketplace colors, custom shadows, and Inter font family."
+}

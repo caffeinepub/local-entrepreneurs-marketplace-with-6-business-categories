@@ -1,0 +1,143 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-implement-authentication-with-internet-identity-for-entrepreneurs-so-they-can-manage-their-seller-profile-and-product-listings-allow-unauthenticated-users-to-browse-categories-sellers-and-products",
+      "featureTitle": "Implement authentication with Internet Identity for entrepreneurs so they can manage their seller profile and product listings; allow unauthenticated users to browse categories, sellers, and products.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/auth/LoginButton.tsx",
+        "frontend/src/components/auth/ProfileSetupDialog.tsx",
+        "frontend/src/hooks/useActor.ts",
+        "frontend/src/hooks/useCurrentUser.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-the-customer-facing-browsing-experience-a-home-page-that-highlights-the-marketplace-purpose-a-category-navigation-for-approximately-6-categories-product-browsing-with-category-filtering-product-detail-view-and-seller-profile-view-showing-seller-info-and-their-products",
+      "featureTitle": "Build the customer-facing browsing experience: a home page that highlights the marketplace purpose, a category navigation for approximately 6 categories, product browsing with category filtering, product detail view, and seller profile view showing seller info and their products.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/pages/CategoryBrowsePage.tsx",
+        "frontend/src/pages/HomePage.tsx",
+        "frontend/src/pages/ProductDetailPage.tsx",
+        "frontend/src/pages/SellerProfilePage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-an-entrepreneur-dashboard-for-creating-and-managing-their-presence-on-the-app-create-edit-seller-profile-e-g-business-name-description-category-contact-info-and-create-edit-delete-product-listings-e-g-title-description-category-price-optional-image-url",
+      "featureTitle": "Build an entrepreneur dashboard for creating and managing their presence on the app: create/edit seller profile (e.g., business name, description, category, contact info) and create/edit/delete product listings (e.g., title, description, category, price, optional image URL).",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/dashboard/ProductEditor.tsx",
+        "frontend/src/components/dashboard/ProductListManager.tsx",
+        "frontend/src/components/dashboard/SellerProfileForm.tsx",
+        "frontend/src/pages/DashboardPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-simple-interest-order-request-flow-that-lets-a-customer-submit-a-purchase-interest-message-for-a-product-stored-as-an-inquiry-linked-to-product-seller-so-the-app-supports-sell-their-product-without-requiring-external-payment-integrations",
+      "featureTitle": "Add a simple “interest/order request” flow that lets a customer submit a purchase interest message for a product (stored as an inquiry linked to product + seller), so the app supports “sell their product” without requiring external payment integrations.",
+      "files": [
+        "frontend/src/components/dashboard/InquiriesPanel.tsx",
+        "frontend/src/components/inquiries/ProductInquiryForm.tsx",
+        "frontend/src/pages/DashboardPage.tsx",
+        "frontend/src/pages/ProductDetailPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-apply-a-cohesive-visual-theme-and-layout-for-an-initial-v1-marketplace-with-a-distinct-style-not-blue-purple-define-color-palette-typography-spacing-and-component-usage-and-apply-consistently-across-pages-home-category-browse-product-detail-seller-profile-dashboard",
+      "featureTitle": "Apply a cohesive visual theme and layout for an initial v1 marketplace, with a distinct style (not blue/purple): define color palette, typography, spacing, and component usage and apply consistently across pages (home, category browse, product detail, seller profile, dashboard).",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/layout/AppLayout.tsx",
+        "frontend/src/index.css",
+        "frontend/src/pages/CategoryBrowsePage.tsx",
+        "frontend/src/pages/DashboardPage.tsx",
+        "frontend/src/pages/HomePage.tsx",
+        "frontend/src/pages/ProductDetailPage.tsx",
+        "frontend/src/pages/SellerProfilePage.tsx",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-generate-and-include-static-brand-assets-for-the-app-logo-hero-illustration-and-render-them-in-the-ui-from-frontend-public-assets-generated-do-not-serve-via-backend",
+      "featureTitle": "Generate and include static brand assets for the app (logo + hero illustration) and render them in the UI from frontend/public/assets/generated (do not serve via backend).",
+      "files": [
+        "frontend/src/components/layout/AppLayout.tsx",
+        "frontend/src/pages/HomePage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

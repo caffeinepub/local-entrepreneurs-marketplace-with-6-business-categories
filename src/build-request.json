@@ -1,0 +1,162 @@
+{
+  "kind": "build_request",
+  "title": "Local Entrepreneurs Marketplace with 6 Business Categories",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create the core marketplace data model and APIs to support local entrepreneurs listing products and being discovered by customers, including: (a) business categories (approximately 6 categories), (b) entrepreneur/seller profiles, (c) product listings tied to sellers and categories, and (d) public browsing/search endpoints.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "I need an app thath help local entrepreneurs be recognized and sell their product on my app this app has to have all almost 6 categories of these businesses"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend exposes query/update methods to: list categories, list products (with optional category filter), get product details, list sellers, and get seller profile.",
+        "Backend supports authenticated updates for sellers to create/update/delete their own seller profile and product listings.",
+        "Data persists across canister upgrades using stable storage patterns (no external database).",
+        "Categories are initialized with ~6 entries and can be returned via a categories list API."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Implement authentication with Internet Identity for entrepreneurs so they can manage their seller profile and product listings; allow unauthenticated users to browse categories, sellers, and products.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "help local entrepreneurs be recognized and sell their product"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Entrepreneur actions (create/update seller profile, create/update/delete products) require a signed-in identity.",
+        "Browsing (view categories, browse products, view seller profile) works without signing in.",
+        "UI clearly indicates signed-in state and provides sign in/sign out controls."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Build the customer-facing browsing experience: a home page that highlights the marketplace purpose, a category navigation for approximately 6 categories, product browsing with category filtering, product detail view, and seller profile view showing seller info and their products.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "help local entrepreneurs be recognized and sell their product",
+          "almost 6 categories of these businesses"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Users can browse a list/grid of categories and select one to filter products.",
+        "Users can view a product details page with key information (name, price if provided, description, seller).",
+        "Users can navigate to a seller profile page and see that seller’s product list.",
+        "All user-facing UI text is in English."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Build an entrepreneur dashboard for creating and managing their presence on the app: create/edit seller profile (e.g., business name, description, category, contact info) and create/edit/delete product listings (e.g., title, description, category, price, optional image URL).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "help local entrepreneurs be recognized and sell their product on my app"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Signed-in entrepreneurs can create or edit a seller profile.",
+        "Signed-in entrepreneurs can add a new product, edit an existing product, and delete a product they own.",
+        "Dashboard reflects backend state (shows the entrepreneur’s current products and profile fields)."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Add a simple “interest/order request” flow that lets a customer submit a purchase interest message for a product (stored as an inquiry linked to product + seller), so the app supports “sell their product” without requiring external payment integrations.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "sell their product on my app"
+        ]
+      },
+      "acceptanceCriteria": [
+        "From a product detail page, a user can submit an inquiry (name/contact + message).",
+        "Backend stores inquiries per product/seller and sellers can list inquiries for their products in the dashboard.",
+        "Sellers can mark an inquiry as handled/resolved."
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Apply a cohesive visual theme and layout for an initial v1 marketplace, with a distinct style (not blue/purple): define color palette, typography, spacing, and component usage and apply consistently across pages (home, category browse, product detail, seller profile, dashboard).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ]
+      },
+      "acceptanceCriteria": [
+        "UI uses a consistent theme (colors/typography) across all main screens.",
+        "Theme avoids a blue/purple primary look; choose an alternative suitable for a local marketplace (e.g., warm neutrals/earth tones).",
+        "Pages are responsive and usable on mobile and desktop."
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Generate and include static brand assets for the app (logo + hero illustration) and render them in the UI from frontend/public/assets/generated (do not serve via backend).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Generated images are stored under frontend/public/assets/generated and referenced directly by the frontend.",
+        "Home page includes the hero illustration and app logo in a way that fits the chosen theme.",
+        "Assets load correctly in production build (no broken image links)."
+      ]
+    }
+  ],
+  "constraints": [
+    "Use Motoko in a single backend actor (no additional backend services).",
+    "Do not edit files under frontend/src/components/ui or other immutable paths listed by the system context; compose these components instead.",
+    "No external databases or third-party auth providers; use Internet Identity only.",
+    "No external real-time/websocket features."
+  ],
+  "nonGoals": [
+    "Integrated payments/checkout processing (e.g., Stripe) is out of scope for this v1.",
+    "Shipping/tax calculation and order fulfillment workflows are out of scope.",
+    "Social media API integrations are out of scope."
+  ],
+  "imageRequirements": {
+    "required": [
+      "Marketplace app logo, simple modern mark with warm earth-tone palette (logo.dim_512x512.png)",
+      "Hero illustration showing a friendly local market scene with small business stalls/products in a clean vector style (hero-illustration.dim_1600x900.png)"
+    ],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [
+      "Build a marketplace app that helps local entrepreneurs get recognized and sell products, organized into ~6 business categories."
+    ],
+    "goalsToRemove": [],
+    "preferencesToAdd": [
+      "User-facing text should be in English."
+    ],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}
